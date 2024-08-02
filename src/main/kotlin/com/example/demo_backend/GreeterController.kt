@@ -14,8 +14,17 @@ class GreeterController {
     fun helloPathValue(
         @PathVariable("name") name: String,
     ): HelloResponse = HelloResponse("Hello $name")
+
+    @PostMapping("/hello")
+    fun helloByPost(
+        @RequestBody request: HelloRequest,
+    ): HelloResponse = HelloResponse("Hello ${request.name}")
 }
 
 data class HelloResponse(
     val message: String,
+)
+
+data class HelloRequest(
+    val name: String,
 )
